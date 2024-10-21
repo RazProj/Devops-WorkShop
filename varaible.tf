@@ -4,10 +4,15 @@ variable "subnets_cidr_block"{
   default     = ["192.168.18.0/24", "192.168.19.0/24"]
 }
 
-variable "availability_zone" {
-  description = "The availability zone for the subnet"
+variable "availability_zones" {
+  description = "The availability zones for the subnets"
+  type        = list(string)
+  default     = ["eu-west-1a", "eu-west-1b"]
+}
+variable "region" {
+  description = "The region for the provider"
   type        = string
-  default     = "eu-west-1a"
+  default     = "eu-west-1"
 }
 
 variable "subnet_name" {
@@ -25,15 +30,36 @@ variable "vpc_cidr_block" {
   type        = string
   default     = "192.168.0.0/16"
 }
-
 variable "routetable_name" {
   description = "The name to tag the route-table"
   type        = string
   default     = "raz-route-table-terraform"
+}
+variable "NAT_Gateway_ID"{
+  description = "The ID of the NAT Gateway"
+  type        = string
+  default     = "nat-0440e3c0e49d26497"
 }
 variable "bucket_name"{
   description = "The ID of the Main Bucket"
   type        = string
   default     = "raz-bucket"
 }
+variable "cluster_version"{
+  description = "The cluster version"
+  type        = string
+  default     = "1.29"
+}
+variable "cluster_name" {
+  description = "The cluster name"
+  type        = string
+  default     = "raz-cluster"
+}
+variable "instance_type" {
+  description = "The instance type for the EKS managed node group"
+  type        = string
+  default     = "t2.micro"
+}
+
+  
 
