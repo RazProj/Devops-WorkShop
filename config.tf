@@ -1,4 +1,4 @@
-# The backend of which the state file is stored
+# The backend of which the state file is stored.
 terraform {
   backend "s3" {
     region = "eu-west-1"

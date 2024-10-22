@@ -15,11 +15,11 @@ resource "aws_subnet" "subnet_two" {
   }
 }
 resource "aws_route_table" "route_table" {
-  vpc_id = var.vpc_id 
- 
+  vpc_id = var.vpc_id
+
   # An outbound route to the Interent via NAT Gateway
   route {
-    cidr_block     = "0.0.0.0/0"  
+    cidr_block     = "0.0.0.0/0"
     nat_gateway_id = var.NAT_Gateway_ID
   }
 
@@ -29,11 +29,11 @@ resource "aws_route_table" "route_table" {
   }
 }
 resource "aws_route_table_association" "associate_subnet_one" {
-  subnet_id      = local.subnet_ids[0] 
+  subnet_id      = local.subnet_ids[0]
   route_table_id = local.route_table_id
 }
 resource "aws_route_table_association" "associate_subnet_two" {
-  subnet_id      = local.subnet_ids[1]   
+  subnet_id      = local.subnet_ids[1]
   route_table_id = local.route_table_id
 }
 # Defining a s3 bucket policy which allows only self user access
@@ -41,29 +41,49 @@ resource "aws_s3_bucket_policy" "raz-bucket-policy" {
   bucket = var.bucket_name
   policy = file("bucket_policy.json")
 }
+resource "aws_eks_access_policy_association" "eks_user_access" {
+  for_each = toset(var.users_arn)
+
+  cluster_name  = var.cluster_name
+  principal_arn = each.value
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+
+  access_scope {
+    type = "cluster"
+  }
+}
 module "eks" {
-  source          = "terraform-aws-modules/eks/aws"
-  version         = "20.24.0"
+  source  = "terraform-aws-modules/eks/aws"
+  version = "20.24.0"
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
 
-  vpc_id          = var.vpc_id
-  subnet_ids         = local.subnet_ids
+  vpc_id                         = var.vpc_id
+  subnet_ids                     = local.subnet_ids
   cluster_endpoint_public_access = true
-  enable_cluster_creator_admin_permissions = true
-  
-    eks_managed_node_group_defaults = {
+
+  eks_managed_node_group_defaults = {
     instance_types = [var.instance_type]
   }
   eks_managed_node_groups = {
     raz-nodegroup = {
-      desired_size = 2
-      max_size     = 3
-      min_size     = 1
-      instance_type    = var.instance_type
+      desired_size  = 2
+      max_size      = 3
+      min_size      = 1
+      instance_type = var.instance_type
     }
   }
+access_entries = {
+  for index, arn in toset(var.users_arn) : index => {
+    principal_arn    = arn   # Reference the ARN directly
+    access_scope = {
+      namespaces = []  # Leave empty for cluster-wide access
+      type       = "cluster"  # Grants access to the entire cluster
+    }
+  }
+}
+
 }
 
 

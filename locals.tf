@@ -1,4 +1,4 @@
-# Stores the subnets ID`s and routetable ID after they are created
+# Stores the subnets ID`s and routetable ID after they are created.
 locals {
   subnet_ids = [
     aws_subnet.subnet_one.id,

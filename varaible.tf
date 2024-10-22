@@ -60,6 +60,16 @@ variable "instance_type" {
   type        = string
   default     = "t2.micro"
 }
+variable "users_arn" {
+  type    = list(string)
+  default = [
+    "arn:aws:iam::730335218716:user/raz-user",
+    "arn:aws:iam::730335218716:user/esterh"
+  ]
+}
+
+
+
 
   
 
