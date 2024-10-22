@@ -41,6 +41,7 @@ resource "aws_s3_bucket_policy" "raz-bucket-policy" {
   bucket = var.bucket_name
   policy = file("bucket_policy.json")
 }
+# Associating the EKS Admin policy to the user`s in user.arn list and defining the access scope
 resource "aws_eks_access_policy_association" "eks_user_access" {
   for_each = toset(var.users_arn)
 
@@ -76,11 +77,7 @@ module "eks" {
   }
 access_entries = {
   for index, arn in toset(var.users_arn) : index => {
-    principal_arn    = arn   # Reference the ARN directly
-    access_scope = {
-      namespaces = []  # Leave empty for cluster-wide access
-      type       = "cluster"  # Grants access to the entire cluster
-    }
+    principal_arn    = arn   
   }
 }
 
