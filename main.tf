@@ -83,7 +83,7 @@ module "eks" {
 access_entries = {
   for index, arn in toset(var.users_arn) : index => {
     principal_arn    = arn   
-  }
+  } 
 }
 
 }
