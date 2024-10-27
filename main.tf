@@ -64,6 +64,11 @@ module "eks" {
   subnet_ids                     = local.subnet_ids
   cluster_endpoint_public_access = true
 
+  cluster_addons = {
+    coredns               = "v1.11.3-eksbuild.1"
+    aws-ebs-csi-driver    = "v1.36.0-eksbuild.1"
+  }
+
   eks_managed_node_group_defaults = {
     instance_types = [var.instance_type]
   }

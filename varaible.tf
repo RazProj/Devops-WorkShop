@@ -58,7 +58,7 @@ variable "cluster_name" {
 variable "instance_type" {
   description = "The instance type for the EKS managed node group"
   type        = string
-  default     = "t2.micro"
+  default     = "t2.small"
 }
 variable "users_arn" {
   type    = list(string)
