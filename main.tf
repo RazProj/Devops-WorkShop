@@ -52,6 +52,8 @@ resource "aws_eks_access_policy_association" "eks_user_access" {
   access_scope {
     type = "cluster"
   }
+  depends_on = [module.eks]
+
 }
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
@@ -85,10 +87,7 @@ access_entries = {
     principal_arn    = arn   
   } 
 }
-
 }
-
-
 
 
 

@@ -67,6 +67,12 @@ variable "users_arn" {
     "arn:aws:iam::730335218716:user/esterh"
   ]
 }
+variable "hosted_zone_id" {
+  description = "The Route 53 Hosted Zone ID for the domain"
+  type        = string
+  default     = "Z00269823B8KU0UBQVXPI"
+}
+
 
 
 

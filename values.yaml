@@ -1,0 +1,9 @@
+service:
+  type: LoadBalancer  
+  port: 80            
+  targetPort: 80    
+  annotations:
+      service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-02b03655a76056bcd"
+      service.beta.kubernetes.io/aws-load-balancer-internal: "false" 
+       
+      
