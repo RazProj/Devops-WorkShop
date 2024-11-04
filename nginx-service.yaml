@@ -5,20 +5,18 @@ metadata:
   annotations:
     service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
     service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:eu-west-1:730335218716:certificate/8f4eeeea-9a1d-443c-a8c8-4de7f8b19aec"
-    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "HTTP"
     service.beta.kubernetes.io/aws-load-balancer-ssl-redirect: "true"
     service.beta.kubernetes.io/aws-load-balancer-name: "raz-lb-test-app"
     service.beta.kubernetes.io/aws-load-balancer-subnets: "subnet-02b03655a76056bcd"
-
 spec:
   selector:
     app: test-app
   ports:
   - name: http
-    port: 80
-    targetPort: 80
+    port: 80          # External port for HTTP
+    targetPort: 80     # Internal port on the pod for HTTP
   - name: https
-    port: 80
-    targetPort: 443
+    port: 443         # External port for HTTPS
+    targetPort: 443    # Internal port on the pod for HTTPS
   type: LoadBalancer
