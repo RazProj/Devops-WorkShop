@@ -94,7 +94,7 @@ resource "aws_route53_record" "example" {
   name    = "raz.wix-devops-workshop.com" 
   type    = "CNAME"                      
   ttl     = 60                       
-  records = ["a212245d498974968a7fa6f9ac4c003f-5f9b757e13cbbde9.elb.eu-west-1.amazonaws.com"]     
+  records = ["adfff56e422e748efb265f27284c1761-b6be531b3981f94f.elb.eu-west-1.amazonaws.com"]     
 }
 
 
