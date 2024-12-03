@@ -1,6 +1,6 @@
 # DevOps Workshop
 
-Welcome to the DevOps Workshop! This repository contains essential configuration files and resources for deploying and managing modern cloud infrastructure and containerized applications. This project was built as part of the course we received at Wix, under the guidance of the senior DevOps team.
+Welcome to the DevOps Workshop! This repository contains essential configuration files and resources for deploying and managing modern cloud infrastructure and containerized applications. This project was developed as part of a comprehensive course provided by Wix, under the mentorship of the senior DevOps team.
 
 ---
 
