@@ -27,7 +27,9 @@ Welcome to the DevOps Workshop! This repository contains essential configuration
 
 4. **`provider.tf`**
 
-   - Configures the cloud provider (e.g., AWS) for resource provisioning.
+   - Configures the cloud provider (AWS, in my case) to provision and manage infrastructure resources.
+
+
 
 5. **`variable.tf`**
 
@@ -39,13 +41,13 @@ Welcome to the DevOps Workshop! This repository contains essential configuration
 
 1. **`nginx-deployment.yaml`**
 
-   - Defines the Kubernetes deployment for an Nginx application.
+   - Defines the Kubernetes deployment for an Nginx test application.
    - Specifies the desired number of replicas, container image, and other deployment parameters.
 
 2. **`nginx-service.yaml`**
 
    - Configures a Kubernetes service to expose the Nginx application.
-   - Defines the service type (e.g., ClusterIP, NodePort, LoadBalancer) and target ports.
+   - Defines the service type (LoadBalancer) and target ports.
 
 ---
 
@@ -65,9 +67,9 @@ To get started, ensure you have the following tools installed and configured:
 
 - [Terraform](https://www.terraform.io/downloads.html)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/)
-- [Helm](https://helm.sh/docs/intro/install/)
+- [helm](https://helm.sh/docs/intro/install/) (For future use)
 - Access to a Kubernetes cluster
-- Proper credentials for your cloud provider (AWS)
+- Proper credentials for your cloud provider (AWS, in my case)
 
 ---
 
@@ -120,7 +122,7 @@ Once the infrastructure is provisioned, deploy your Kubernetes resources:
 
 ---
 
-### Using Helm
+### Using Helm (For Future Use)
 
 1. Deploy a Helm chart with custom values:
 
@@ -136,9 +138,9 @@ Once the infrastructure is provisioned, deploy your Kubernetes resources:
 
 ---
 
-## Resource Flow Diagram
+## Infrastructure Resource Flow Diagram
 
-Below is a high-level resource flow diagram. It illustrates how user requests are handled through Route53, the Load Balancer, EKS Cluster, and other components in your architecture:
+Below is a resource flow diagram. It illustrates how user requests are handled through Route53, the Load Balancer, EKS Cluster, and other components in the architecture:
 
 ```mermaid
 graph TD
@@ -156,13 +158,12 @@ graph TD
 ---
 
 
-## Resource Flow Diagram
+## Infrastructure and Network Architecture
+
 
 Below is a high-level resource flow diagram. It illustrates how user requests are handled through Route53, the Load Balancer, EKS Cluster, and other components in your architecture:
 
 ![Resource Flow Diagram](mocks/flow.drawio.png)
-
-
 
 
 ---
