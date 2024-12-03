@@ -140,7 +140,7 @@ Once the infrastructure is provisioned, deploy your Kubernetes resources:
 
 ## Infrastructure Resource Flow Diagram
 
-Below is a resource flow diagram. It illustrates how user requests are handled through Route53, the Load Balancer, EKS Cluster, and other components in the architecture:
+Below is a detailed resource flow diagram created using Mermaid. It illustrates how user requests are processed through Route53, Load Balancer, EKS Cluster, and other resources:
 
 ```mermaid
 graph TD
@@ -161,7 +161,7 @@ graph TD
 ## Infrastructure and Network Architecture
 
 
-Below is a high-level resource flow diagram. It illustrates how user requests are handled through Route53, the Load Balancer, EKS Cluster, and other components in your architecture:
+Below is a high-level architecture diagram created with draw.io. It includes details about VPCs, subnets, and how components like the Load Balancer, EKS Cluster, and NAT Gateway are connected:
 
 ![Resource Flow Diagram](mocks/flow.drawio.png)
 
